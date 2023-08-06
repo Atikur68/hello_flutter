@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:liquid_swipe/liquid_swipe.dart';
 
 void main() {
   runApp(MyApp());
@@ -73,6 +74,16 @@ class MainClass extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => TinyTidbits()));
           },
         ),
+        ListTile(
+          title: Text("Liquid Swipe Practice"),
+          subtitle: Text("This is liquid swipe"),
+          leading: CircleAvatar(child: Icon(Icons.lan),),
+          trailing: Icon(Icons.access_alarm),
+          onTap: (){
+            Navigator.push(context,
+            MaterialPageRoute(builder: (context) => LiquidSwipePractice()));
+          },
+        )
       ]),
     );
   }
@@ -282,6 +293,39 @@ class TinyTidbits extends StatelessWidget {
     );
   }
 }
+
+class LiquidSwipePractice extends StatelessWidget {
+   LiquidSwipePractice({super.key});
+
+  final pages = [
+    Container(color: Colors.deepOrange,),
+    Container(color: Colors.cyan),
+    Container(color: Colors.green),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+
+      debugShowCheckedModeBanner: false,
+      home: Builder(
+        builder: (context) => LiquidSwipe(pages: pages)
+            //  Scaffold(
+            //   floatingActionButton: FloatingActionButton(
+            //     child: Icon(Icons.adb),
+            //     onPressed: (){
+            //       Navigator.pop(context);
+            //     },
+            //   ),
+            //
+            // );
+
+        ),
+
+    );
+  }
+}
+
 
 
 class MyAppnew extends StatelessWidget {
