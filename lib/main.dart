@@ -1,8 +1,25 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:hello_futter/data_class.dart';
+import 'package:hello_futter/data_class_second.dart';
+import 'package:hello_futter/nav_check_with_pageview.dart';
+import 'package:hello_futter/page1.dart';
+import 'package:hello_futter/page2.dart';
+import 'package:hello_futter/page3.dart';
+import 'package:hello_futter/provider_main.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
+import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
+
+import 'camerapage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context)=>ProviderDataClass()),
+    ChangeNotifierProvider(create: (context)=>ProviderDataClassSecond()),
+  ],
+      child:MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +38,7 @@ class MainClass extends StatelessWidget {
       appBar: AppBar(
         title: Text('Hello'),
         backgroundColor: Colors.orangeAccent,
-        foregroundColor: Colors.deepOrange,
+       // foregroundColor: Colors.deepOrange,
         centerTitle: true,
         leading: Icon(Icons.cake),
         actions: [
@@ -60,7 +77,7 @@ class MainClass extends StatelessWidget {
           subtitle: Text("From asset and network"),
           trailing: Icon(Icons.ac_unit),
           onTap: (){
-            Navigator.push(context, 
+            Navigator.push(context,
                 MaterialPageRoute(builder: (context) => ImagePractice()));
           },
         ),
@@ -83,7 +100,87 @@ class MainClass extends StatelessWidget {
             Navigator.push(context,
             MaterialPageRoute(builder: (context) => LiquidSwipePractice()));
           },
-        )
+        ),
+        ListTile(
+          title: Text("Card & Gridview Practice"),
+          subtitle: Text("Card & Gridview Practice"),
+          leading: CircleAvatar(child: Icon(Icons.lan),),
+          trailing: Icon(Icons.access_alarm),
+          onTap: (){
+            Navigator.push(context,
+            MaterialPageRoute(builder: (context) => CardGridViewPractice()));
+          },
+        ),
+        ListTile(
+          title: Text("Expanded wdget Practice"),
+          subtitle: Text("Expanded widget Practice"),
+          leading: CircleAvatar(child: Icon(Icons.accessibility_sharp),),
+          trailing: Icon(Icons.access_time_filled),
+          onTap: (){
+            Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ExpandedWidgetPractice()));
+          },
+        ),
+        ListTile(
+          title: Text("PageView Practice"),
+          subtitle: Text("PageView Practice"),
+          leading: CircleAvatar(child: Icon(Icons.accessibility_sharp),),
+          trailing: Icon(Icons.access_time_filled),
+          onTap: (){
+            Navigator.push(context,
+            MaterialPageRoute(builder: (context) => PageViewPractice()));
+          },
+        ),
+        ListTile(
+          title: Text("Bottom Navigation Practice"),
+          subtitle: Text("Bottom Navigation Practice"),
+          leading: CircleAvatar(child: Icon(Icons.accessibility_sharp),),
+          trailing: Icon(Icons.access_time_filled),
+          onTap: (){
+            Navigator.push(context,
+            MaterialPageRoute(builder: (context) => BottomNavigationPractice()));
+          },
+        ),
+        ListTile(
+          title: Text("TabBar Practice"),
+          subtitle: Text("TabBar Practice"),
+          leading: CircleAvatar(child: Icon(Icons.accessibility_sharp),),
+          trailing: Icon(Icons.access_time_filled),
+          onTap: (){
+            Navigator.push(context,
+            MaterialPageRoute(builder: (context) => TabBarPractice()));
+          },
+        ),
+        ListTile(
+          title: Text("SliverAppBar Practice"),
+          subtitle: Text("SliverAppBar Practice"),
+          leading: CircleAvatar(child: Icon(Icons.accessibility_sharp),),
+          trailing: Icon(Icons.access_time_filled),
+          onTap: (){
+            Navigator.push(context,
+            MaterialPageRoute(builder: (context) => SliverAppBarPractice()));
+          },
+        ),
+        ListTile(
+          title: Text("Provider Practice"),
+          subtitle: Text("Provider Practice"),
+          leading: CircleAvatar(child: Icon(Icons.accessibility_sharp),),
+          trailing: Icon(Icons.access_time_filled),
+          onTap: (){
+            Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ProviderPractice()));
+          },
+        ),
+        ListTile(
+          title: Text("ImagePicker Practice"),
+          subtitle: Text("ImagePicker Practice"),
+          leading: CircleAvatar(child: Icon(Icons.accessibility_sharp),),
+          trailing: Icon(Icons.access_time_filled),
+          onTap: (){
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ImagePickerPractice()));
+          },
+        ),
       ]),
     );
   }
@@ -310,18 +407,378 @@ class LiquidSwipePractice extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Builder(
         builder: (context) => LiquidSwipe(pages: pages)
-            //  Scaffold(
-            //   floatingActionButton: FloatingActionButton(
-            //     child: Icon(Icons.adb),
-            //     onPressed: (){
-            //       Navigator.pop(context);
-            //     },
-            //   ),
-            //
-            // );
 
         ),
 
+    );
+  }
+}
+
+class CardGridViewPractice extends StatelessWidget {
+  const CardGridViewPractice({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Center(
+          child: Card(
+            elevation: 10,
+            color: Colors.deepOrange,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(40))
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: GridView.count(
+                crossAxisCount: 3,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+
+                children: [
+                  Container(
+                    height: 200,
+                    width: 200,
+                    color: Colors.orange,
+
+                    child: Center(child: Text("1"),),
+                  ),Container(
+                    height: 200,
+                    width: 200,
+                    color: Colors.orange,
+                  ),Container(
+                    height: 200,
+                    width: 200,
+                    color: Colors.orange,
+                  ),Container(
+                    height: 200,
+                    width: 200,
+                    color: Colors.orange,
+                  ),Container(
+                    height: 200,
+                    width: 200,
+                    color: Colors.orange,
+                  ),Container(
+                    height: 200,
+                    width: 200,
+                    color: Colors.orange,
+                  ),Container(
+                    height: 200,
+                    width: 200,
+                    color: Colors.orange,
+                  ),Container(
+                    height: 200,
+                    width: 200,
+                    color: Colors.orange,
+                  ),Container(
+                    height: 200,
+                    width: 200,
+                    color: Colors.orange,
+                  ),
+                ]
+              ),
+            ),
+          ),
+
+        ),
+      ),
+    );
+  }
+}
+
+class ExpandedWidgetPractice extends StatelessWidget {
+  const ExpandedWidgetPractice({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Column(
+          children: [
+            Expanded(
+              flex: 2,
+                child: MyApp()),
+            Expanded(
+              flex: 1,
+                child: Container(
+              color: Colors.blueAccent,
+            )),
+            Expanded(
+              flex: 1,
+                child: Container(
+              color: Colors.cyanAccent,
+            )),
+
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class PageViewPractice extends StatelessWidget {
+   PageViewPractice({super.key});
+
+  PageController _pageController= PageController(
+    initialPage: 0,
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: PageView(
+          scrollDirection: Axis.vertical,
+          controller: _pageController,
+          children: [
+            Page1(),
+            Page2(),
+            Page3(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class BottomNavigationPractice extends StatefulWidget {
+  const BottomNavigationPractice({super.key});
+
+  @override
+  State<BottomNavigationPractice> createState() => _BottomNavigationPracticeState();
+}
+
+class _BottomNavigationPracticeState extends State<BottomNavigationPractice> {
+  var index=0;
+  final pages=[
+    Page1(),
+    Page2(),
+    NavPageView()
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.cyanAccent,
+          currentIndex: index,
+
+          items: [
+            BottomNavigationBarItem(
+              label: "Home",
+              icon: Icon(Icons.home),
+
+            ),
+            BottomNavigationBarItem(
+                label: "Notifications",
+              icon: Icon(Icons.notifications),
+
+            ),
+            BottomNavigationBarItem(
+                label: "Friends",
+              icon: Icon(Icons.face),
+
+            ),
+          ],
+          onTap: (ind){
+            setState(() {
+              index=ind;
+            });
+          },
+        ),
+        body: pages[index]
+      ),
+    );
+  }
+}
+
+class TabBarPractice extends StatelessWidget {
+  const TabBarPractice({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: TabBar(
+                  tabs: [
+                    Tab(icon: Icon(Icons.camera),),
+                    Tab(icon: Icon(Icons.call),)
+                  ]
+
+            ),
+          ),
+          body: TabBarView(
+            children: [
+              Page1(),
+              Page2()
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SliverAppBarPractice extends StatefulWidget {
+  const SliverAppBarPractice({super.key});
+
+  @override
+  State<SliverAppBarPractice> createState() => _SliverAppBarPracticeState();
+}
+
+class _SliverAppBarPracticeState extends State<SliverAppBarPractice> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              pinned: true,
+              //backgroundColor: Colors.deepOrange,
+              toolbarHeight: 30,
+              expandedHeight: 80,
+              collapsedHeight: 40,
+              flexibleSpace: FlexibleSpaceBar(
+               // centerTitle: false,
+                background: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Colors.green,Colors.orange]
+                    )
+                  ),
+                ),
+                titlePadding: EdgeInsets.all(0.5),
+                title: Text("Sliver app bar"),
+              ),
+            ),
+            SliverList(delegate: SliverChildListDelegate([
+
+              addListTile("hello", "sliver"),
+              addListTile("hello", "sliver"),
+              addListTile("hello", "sliver"),
+              addListTile("hello", "sliver"),
+              addListTile("hello", "sliver"),
+              addListTile("hello", "sliver"),
+              addListTile("hello", "sliver"),
+              addListTile("hello", "sliver"),
+              addListTile("hello", "sliver"),
+              addListTile("hello", "sliver"),
+            ]))
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+Widget addListTile(
+    String name, String details
+    ){
+return ListTile(
+  title: Text(name),
+  subtitle: Text(details),
+  leading: CircleAvatar(
+    child: Text(name[0]),
+  ),
+  trailing: Icon(Icons.adb),
+);
+}
+
+class ProviderPractice extends StatefulWidget {
+  const ProviderPractice({super.key});
+
+  @override
+  State<ProviderPractice> createState() => _ProviderPracticeState();
+}
+
+class _ProviderPracticeState extends State<ProviderPractice> {
+  @override
+  Widget build(BuildContext context) {
+    final providerdata= Provider.of<ProviderDataClass>(context);
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(providerdata.value.toString()),
+              ElevatedButton(
+                onPressed: (){
+                 // providerdata.Increment();
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ProviderMain()));
+                }, child: Text('Next Page'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+  }
+}
+
+class ImagePickerPractice extends StatefulWidget {
+  const ImagePickerPractice({super.key});
+
+  @override
+  State<ImagePickerPractice> createState() => _ImagePickerPracticeState();
+}
+
+class _ImagePickerPracticeState extends State<ImagePickerPractice> {
+     File? _image;
+  // Future <void> TakeImage() async{
+  //   XFile? image=await ImagePicker().pickImage(source: ImageSource.camera);
+  //   setState(() {
+  //     _image= File(image!.path);
+  //   });
+  // }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Column(
+          children: [
+            Container(
+              height: 500,
+              width: MediaQuery.of(context).size.width,
+              color: Colors.deepOrange,
+             // child: _image == null ? Center(child: Text('No Image selected')) : Image.file(_image!) ,
+            ),
+            Divider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FloatingActionButton(
+                    heroTag: "btn1",
+                  child: Icon(Icons.camera),
+                    onPressed:() async {
+                    //TakeImage();
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context)=> CameraPage()));
+                    }
+                ),
+                SizedBox(width: 50,),
+                FloatingActionButton(
+                    heroTag: "btn2",
+                    child: Icon(Icons.upload_file),
+                    onPressed: null)
+              ],
+            )
+          ],
+        ),
+      ),
     );
   }
 }
